@@ -1,4 +1,13 @@
-*env
-.venv
-.env
+# Ignore the virtual environment directory
+.venv/
 
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore other common files
+.env
+.idea/
+.vscode/
+*.log
