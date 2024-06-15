@@ -1,6 +1,6 @@
 # YouTube Video Downloader CLI Application
 
-This command-line application downloads YouTube videos specified by the user. It uses the `pytube` library to fetch and download the videos and `tqdm` to display a progress bar.
+This command-line application downloads YouTube videos specified by the user. It uses the `pytube` library to fetch and download the videos.
 
 ## 🌟 Features
 - Downloads YouTube videos in mp4 format
