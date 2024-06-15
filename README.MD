@@ -6,7 +6,6 @@ This command-line application downloads YouTube videos specified by the user. It
 - Downloads YouTube videos in mp4 format
 - Allows downloading multiple videos in one go
 - Robust error handling for invalid URLs and unavailable videos
-- Displays a progress bar for each video download
 
 ## 🚀 Getting Started
 
@@ -70,11 +69,11 @@ source ~/.bashrc  # or ~/.zshrc depending on your shell
       Enter YouTube URL 3: https://www.youtube.com/watch?v=example_video_id3
       ```
 
-3. The application will then download the specified videos, displaying a progress bar for each download.
+3. The application will then download the specified videos.
 
 ## 🚧 Future Enhancements
 * Add a function to download a playlist of videos
-* Enhance the progress bar to show detailed download progress
+* Add a progress bar to show detailed download progress
 
 ## 📄 License
 

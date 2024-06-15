@@ -48,7 +48,7 @@ def main():
                         print("The video is unavailable. Please enter a valid URL.")
         
         # FIXME: Add progress bar for each video downloaded
-        for video in tqdm(videos):
+        for video in videos:
             download_video(video)
         break
    
