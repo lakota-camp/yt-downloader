@@ -1,44 +1,52 @@
 from pytube import YouTube
-
-def download_video_multiple(num_downloads):
-    """Downloads user specified number of videos from YouTube prompitng user to enter each URL
-
-    Args:
-        num_downloads (int): specifies how many videos to download
-    """
-    try:        
-        videos = []
-        
-        for i in range(num_downloads):
-        
-            url = input('Enter youtube URL: ')
-
-            yt = YouTube(url)
-
-            stream = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
-
-            videos.append(stream)
-        
-        for stream in videos:
-        
-            stream.download()
-
-        print("Download completed")
-        
-    except Exception as e:
-        print(f'Error: {e}')
+from pytube.exceptions import VideoUnavailable, RegexMatchError
+from tqdm import tqdm
         
 def download_video(url):
     """Downloads YouTube video specified by the URL
 
     Args:
-        url (string): specifies the YouTube URL to download
+        url (str): specifies the YouTube URL to download
     """
     try:        
         yt = YouTube(url)
         stream = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
         stream.download()
-        print("Download completed")
+        print(f"Download completed for: '{yt.title}'")
             
     except Exception as e:
-        print(f'Error: {e}')
+        print('Error. Could not download video.')
+        # For Debug purposes
+        # print(f'Error: {e}')
+        
+def main():
+    while True:
+        try:
+            num_videos = int(input('Enter the number of videos to download: '))
+        except ValueError as e:
+            print('Error. Please enter an integer.')
+            continue
+        
+        videos = []
+        
+        for video in range(num_videos):
+            # Nested while loop for error handling
+            while True:
+                url = input(f'Enter YouTube URL {video + 1}: ')
+                if not url:
+                    print("Please enter a URL.")
+                    continue
+                else:
+                    try:
+                        yt = YouTube(url)
+                        videos.append(url)
+                        break
+                    except (VideoUnavailable, RegexMatchError):
+                        print("The video is unavailable. Please enter a valid URL.")
+        
+        for video in videos:
+            download_video(video)
+        break
+   
+if __name__ == "__main__":
+    main()
